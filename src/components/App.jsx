@@ -10,9 +10,10 @@ import { Title } from './Title/Title';
 function App() {
   const [contacts, setContacts] = useState(() => {
     const localStorContacts = localStorage.getItem('contacts');
-    const parseContacts = JSON.parse(localStorContacts);
-    if (parseContacts.length > 0) {
-      return parseContacts;
+
+    if (localStorContacts) {
+      const parseContacts = JSON.parse(localStorContacts);
+      if (parseContacts.length > 0) return parseContacts;
     }
     return [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
