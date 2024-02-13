@@ -1,0 +1,26 @@
+.label {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.container {
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+.input {
+  width: 380px;
+  height: 40px;
+  border: 2px solid rgb(121, 193, 208);
+  outline: transparent;
+  border-radius: 20px;
+  padding: 5px 0 5px 20px;
+  font-size: 24px;
+}
+
+.input:hover,
+.input:focus {
+  border: 2px solid rgb(121, 193, 208);
+  box-shadow: 3px 2px 2cqh rgb(83, 125, 133);
+}
