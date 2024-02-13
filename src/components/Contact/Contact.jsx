@@ -1,7 +1,7 @@
-import css from './ContactItem.module.css';
+import css from './Contact.module.css';
 import { FaPhone } from 'react-icons/fa6';
 import { FaUser } from 'react-icons/fa';
-export const ContactItem = ({ id, name, number, deleteContact }) => {
+export const Contact = ({ id, name, number, deleteContact }) => {
   return (
     <>
       <div className={css.contactWrap}>

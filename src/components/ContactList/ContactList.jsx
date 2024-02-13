@@ -1,5 +1,5 @@
-import { ContactItem } from '../ContactItem/ContactItem';
-import css from './ContactsList.module.css';
+import { Contact } from '../Contact/Contact';
+import css from './ContactList.module.css';
 
 export const ContactList = ({ contactsArr, deleteContact }) => {
   return (
@@ -7,7 +7,7 @@ export const ContactList = ({ contactsArr, deleteContact }) => {
       {contactsArr.map(({ id, name, number }) => {
         return (
           <li className={css.item} key={id}>
-            <ContactItem
+            <Contact
               name={name}
               number={number}
               deleteContact={deleteContact}

@@ -17,6 +17,7 @@ const ContactsSchema = Yup.object().shape({
 export const ContactForm = ({ onSubmit }) => {
   const nameId = useId();
   const numberId = useId();
+
   return (
     <Formik
       initialValues={{ name: '', number: '' }}

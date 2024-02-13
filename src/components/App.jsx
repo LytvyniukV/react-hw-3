@@ -1,10 +1,10 @@
 import { SearchBox } from './SearchBox/SearchBox';
-import { ContactList } from './ContactsList/ContactsList';
+import { ContactList } from './ContactList/ContactList';
 import { useEffect, useState } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { nanoid } from 'nanoid';
 import { showWarning } from '../js/message';
-import { Notification } from './Notofication/Notification';
+import { Notification } from './Notification/Notification';
 import { Title } from './Title/Title';
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
-  });
-  const addContact = (values, actions) => {
+  }, [contacts]);
+  const addContact = (values, { resetForm }) => {
     const contact = { id: nanoid(), ...values };
     const normalizedName = values.name.toLowerCase();
 
@@ -38,10 +38,10 @@ function App() {
     }
 
     setContacts([contact, ...contacts]);
-    actions.resetForm();
+    resetForm();
   };
 
-  const filterContacts = event => {
+  const updateSearchFilter = event => {
     setFilter(event.currentTarget.value);
   };
 
@@ -62,7 +62,7 @@ function App() {
     <>
       <Title />
       <ContactForm onSubmit={addContact} />
-      <SearchBox value={filter} onChange={filterContacts} />
+      <SearchBox value={filter} onChange={updateSearchFilter} />
       {contacts.length > 0 ? (
         <ContactList
           contactsArr={filteredContacts}
