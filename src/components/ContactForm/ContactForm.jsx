@@ -3,20 +3,24 @@ import css from './ContactForm.module.css';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const ContactsSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, 'Too Short! Min 3 symbols')
     .max(50, 'Too Long! Max 50 symbols')
     .required('Required'),
   number: Yup.string()
-    .min(3, 'Too Short! Min 3 symbols')
-    .max(50, 'Too Long! Max 50 symbols')
+    .min(7, 'Too Short! Min 7 symbols')
+    .max(12, 'Too Long! Max 12 symbols')
+    .matches(phoneRegExp, 'Phone number is not valid. Only numbers!')
     .required('Required'),
 });
 
 export const ContactForm = ({ onSubmit }) => {
   const nameId = useId();
   const numberId = useId();
+
   const submitForm = (values, actions) => {
     onSubmit(values);
     actions.resetForm();
@@ -45,7 +49,6 @@ export const ContactForm = ({ onSubmit }) => {
           <Field
             type="text"
             name="number"
-            pattern="\+?[0-9\s\-\(\)]+"
             id={numberId}
             className={css.input}
           />
