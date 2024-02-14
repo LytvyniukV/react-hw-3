@@ -17,11 +17,14 @@ const ContactsSchema = Yup.object().shape({
 export const ContactForm = ({ onSubmit }) => {
   const nameId = useId();
   const numberId = useId();
-
+  const submitForm = (values, actions) => {
+    onSubmit(values);
+    actions.resetForm();
+  };
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
-      onSubmit={onSubmit}
+      onSubmit={submitForm}
       validationSchema={ContactsSchema}
     >
       <Form className={css.form}>

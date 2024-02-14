@@ -26,8 +26,8 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-  const addContact = (values, { resetForm }) => {
+  });
+  const addContact = values => {
     const contact = { id: nanoid(), ...values };
     const normalizedName = values.name.toLowerCase();
 
@@ -38,10 +38,9 @@ function App() {
     }
 
     setContacts([contact, ...contacts]);
-    resetForm();
   };
 
-  const updateSearchFilter = event => {
+  const filterContacts = event => {
     setFilter(event.currentTarget.value);
   };
 
@@ -62,7 +61,7 @@ function App() {
     <>
       <Title />
       <ContactForm onSubmit={addContact} />
-      <SearchBox value={filter} onChange={updateSearchFilter} />
+      <SearchBox value={filter} onChange={filterContacts} />
       {contacts.length > 0 ? (
         <ContactList
           contactsArr={filteredContacts}
