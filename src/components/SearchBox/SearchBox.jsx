@@ -13,7 +13,7 @@ export const SearchBox = ({ value, onChange }) => {
         name="name"
         id={inputId}
         value={value}
-        onChange={onChange}
+        onChange={e => onChange(e.target.value)}
       />
     </div>
   );

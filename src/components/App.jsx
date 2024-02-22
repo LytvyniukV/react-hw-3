@@ -28,11 +28,7 @@ function App() {
       return showWarning(values.name);
     }
 
-    setContacts([contact, ...contacts]);
-  };
-
-  const filterContacts = event => {
-    setFilter(event.currentTarget.value);
+    setContacts(prevContacts => [...prevContacts, contact]);
   };
 
   const getFilteredContacts = () => {
@@ -52,7 +48,7 @@ function App() {
     <>
       <Title />
       <ContactForm onSubmit={addContact} />
-      <SearchBox value={filter} onChange={filterContacts} />
+      <SearchBox value={filter} onChange={setFilter} />
       {contacts.length > 0 ? (
         <ContactList
           contactsArr={filteredContacts}
